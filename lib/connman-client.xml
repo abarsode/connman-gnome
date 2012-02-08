@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<node name="/">
+  <interface name="net.connman.Manager">
+    <method name="GetProperties">
+      <arg type="a{sv}" direction="out"/>
+    </method>
+    <method name="SetProperty">
+      <arg type="s" direction="in"/>
+      <arg type="v" direction="in"/>
+    </method>
+    <method name="GetTechnologies">
+      <arg type="a(oa{sv})" direction="out"/>
+    </method>
+    <method name="GetServices">
+      <arg type="a(oa{sv})" direction="out"/>
+    </method>
+
+    <signal name="TechnologyAdded">
+      <arg type="o"/>
+      <arg type="a{sv}"/>
+    </signal>
+    <signal name="TechnologyRemoved">
+      <arg type="o"/>
+    </signal>
+    <signal name="ServicesAdded">
+      <arg type="a(oa{sv})"/>
+    </signal>
+    <signal name="PropertyChanged">
+      <arg type="s"/>
+      <arg type="v"/>
+    </signal>
+
+    <property name="State" type="s" access="read"/>
+    <property name="Offlinemode" type="b" access="readwrite"/>
+  </interface>
+</node>

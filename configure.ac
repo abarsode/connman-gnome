@@ -1,4 +1,4 @@
-AC_PREREQ(2.50)
+AC_PREREQ(2.52)
 AC_INIT()
 
 AM_INIT_AUTOMAKE(connman-gnome, 0.5)
@@ -22,13 +22,21 @@ AC_PROG_CC_PIE
 AC_PROG_INSTALL
 AC_PROG_RANLIB
 
+AM_DISABLE_STATIC
+AM_PROG_LIBTOOL
+
 GETTEXT_PACKAGE=connman
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
 					[The name of the gettext domain])
 
 AM_GLIB_GNU_GETTEXT
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL([0.40.0])
+
+GLIB_GSETTINGS
+
+AC_PATH_PROG([XMLLINT],[xmllint])
+
 
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],
 			[enable compiling with debugging information]), [
@@ -55,13 +63,19 @@ AC_SUBST(DBUS_LIBS)
 DBUS_BINDING_TOOL="dbus-binding-tool"
 AC_SUBST(DBUS_BINDING_TOOL)
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.8, dummy=yes,
-				AC_MSG_ERROR(gtk+ >= 2.8 is required))
+PKG_CHECK_MODULES(GTK, gtk+-3.0 >= 2.91.3,  dummy=yes,
+				AC_MSG_ERROR(gtk+ >= 2.91 is required))
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 
 GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 
+dnl Requires for the public library
+PKG_CHECK_MODULES(LIBGNOME, gmodule-2.0 gio-unix-2.0 gtk+-3.0)
+
+GDBUS_CODEGEN="gdbus-codegen"
+AC_SUBST(GDBUS_CODEGEN)
+
 AC_OUTPUT(Makefile common/Makefile applet/Makefile properties/Makefile
-					icons/Makefile po/Makefile.in)
+				lib/Makefile icons/Makefile po/Makefile.in)

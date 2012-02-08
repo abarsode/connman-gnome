@@ -1,5 +1,5 @@
 
-SUBDIRS = po icons common properties applet
+SUBDIRS = po icons common properties applet lib
 
 EXTRA_DIST = intltool-extract.in intltool-update.in intltool-merge.in
 

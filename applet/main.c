@@ -144,62 +144,62 @@ static void name_owner_changed(DBusGProxy *proxy, const char *name,
 	}
 }
 
-static void open_uri(GtkWindow *parent, const char *uri)
-{
-	GtkWidget *dialog;
-	GdkScreen *screen;
-	GError *error = NULL;
-	gchar *cmdline;
+/* static void open_uri(GtkWindow *parent, const char *uri) */
+/* { */
+/* 	GtkWidget *dialog; */
+/* 	GdkScreen *screen; */
+/* 	GError *error = NULL; */
+/* 	gchar *cmdline; */
 
-	screen = gtk_window_get_screen(parent);
+/* 	screen = gtk_window_get_screen(parent); */
 
-	cmdline = g_strconcat("xdg-open ", uri, NULL);
+/* 	cmdline = g_strconcat("xdg-open ", uri, NULL); */
 
-	if (gdk_spawn_command_line_on_screen(screen,
-				cmdline, &error) == FALSE) {
-		dialog = gtk_message_dialog_new(parent,
-				GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR,
-				GTK_BUTTONS_CLOSE, "%s", error->message);
-		gtk_dialog_run(GTK_DIALOG(dialog));
-		gtk_widget_destroy(dialog);
-		g_error_free(error);
-	}
+/* 	if (gdk_spawn_command_line_on_screen(screen, */
+/* 				cmdline, &error) == FALSE) { */
+/* 		dialog = gtk_message_dialog_new(parent, */
+/* 				GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, */
+/* 				GTK_BUTTONS_CLOSE, "%s", error->message); */
+/* 		gtk_dialog_run(GTK_DIALOG(dialog)); */
+/* 		gtk_widget_destroy(dialog); */
+/* 		g_error_free(error); */
+/* 	} */
 
-	g_free(cmdline);
-}
+/* 	g_free(cmdline); */
+/* } */
 
-static void about_url_hook(GtkAboutDialog *dialog,
-				const gchar *url, gpointer data)
-{
-	open_uri(GTK_WINDOW(dialog), url);
-}
+/* static void about_url_hook(GtkAboutDialog *dialog, */
+/* 				const gchar *url, gpointer data) */
+/* { */
+/* 	open_uri(GTK_WINDOW(dialog), url); */
+/* } */
 
-static void about_email_hook(GtkAboutDialog *dialog,
-				const gchar *email, gpointer data)
-{
-	gchar *uri;
+/* static void about_email_hook(GtkAboutDialog *dialog, */
+/* 				const gchar *email, gpointer data) */
+/* { */
+/* 	gchar *uri; */
 
-	uri = g_strconcat("mailto:", email, NULL);
-	open_uri(GTK_WINDOW(dialog), uri);
-	g_free(uri);
-}
+/* 	uri = g_strconcat("mailto:", email, NULL); */
+/* 	open_uri(GTK_WINDOW(dialog), uri); */
+/* 	g_free(uri); */
+/* } */
 
 static void about_callback(GtkWidget *item, gpointer user_data)
 {
-	const gchar *authors[] = {
-		"Marcel Holtmann <marcel@holtmann.org>",
-		NULL
-	};
+	/* const gchar *authors[] = { */
+	/* 	"Marcel Holtmann <marcel@holtmann.org>", */
+	/* 	NULL */
+	/* }; */
 
-	gtk_about_dialog_set_url_hook(about_url_hook, NULL, NULL);
-	gtk_about_dialog_set_email_hook(about_email_hook, NULL, NULL);
+	/* gtk_about_dialog_set_url_hook(about_url_hook, NULL, NULL); */
+	/* gtk_about_dialog_set_email_hook(about_email_hook, NULL, NULL); */
 
-	gtk_show_about_dialog(NULL, "version", VERSION,
-			"copyright", "Copyright \xc2\xa9 2008 Intel Corporation",
-			"comments", _("A connection manager for the GNOME desktop"),
-			"authors", authors,
-			"translator-credits", _("translator-credits"),
-			"logo-icon-name", "network-wireless", NULL);
+	/* gtk_show_about_dialog(NULL, "version", VERSION, */
+	/* 		"copyright", "Copyright \xc2\xa9 2008 Intel Corporation", */
+	/* 		"comments", _("A connection manager for the GNOME desktop"), */
+	/* 		"authors", authors, */
+	/* 		"translator-credits", _("translator-credits"), */
+	/* 		"logo-icon-name", "network-wireless", NULL); */
 }
 
 static void settings_callback(GtkWidget *item, gpointer user_data)

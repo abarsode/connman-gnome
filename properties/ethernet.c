@@ -112,7 +112,7 @@ void add_ethernet_service(GtkWidget *mainbox, GtkTreeIter *iter, struct config_d
 	GtkWidget *vbox;
 	GtkWidget *table;
 	GtkWidget *label;
-	GtkWidget *combo;
+	//GtkWidget *combo;
 
 	GtkWidget *entry;
 	GtkWidget *button;
@@ -144,13 +144,13 @@ void add_ethernet_service(GtkWidget *mainbox, GtkTreeIter *iter, struct config_d
 	label = gtk_label_new(_("Configuration:"));
 	gtk_table_attach_defaults(GTK_TABLE(table), label, 1, 2, 0, 1);
 
-	combo = gtk_combo_box_new_text();
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "DHCP");
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "MANUAL");
-	gtk_combo_box_set_row_separator_func(GTK_COMBO_BOX(combo),
-					separator_function, NULL, NULL);
-	gtk_table_attach_defaults(GTK_TABLE(table), combo, 2, 4, 0, 1);
-	data->policy.config = combo;
+	//combo = gtk_combo_box_new_text();
+	//gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "DHCP");
+	//gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "MANUAL");
+	//gtk_combo_box_set_row_separator_func(GTK_COMBO_BOX(combo),
+	//				separator_function, NULL, NULL);
+	//gtk_table_attach_defaults(GTK_TABLE(table), combo, 2, 4, 0, 1);
+	//data->policy.config = combo;
 
 	label = gtk_label_new(_("IP address:"));
 	gtk_table_attach_defaults(GTK_TABLE(table), label, 1, 2, 1, 2);
@@ -199,8 +199,8 @@ void add_ethernet_service(GtkWidget *mainbox, GtkTreeIter *iter, struct config_d
 	else
 		update_ethernet_ipv4(data, CONNMAN_POLICY_MANUAL);
 
-	g_signal_connect(G_OBJECT(combo), "changed",
-			G_CALLBACK(changed_callback), data);
+	/* g_signal_connect(G_OBJECT(combo), "changed", */
+	/* 		G_CALLBACK(changed_callback), data); */
 }
 
 void update_ethernet_ipv4(struct config_data *data, guint policy)
@@ -219,7 +219,7 @@ void update_ethernet_ipv4(struct config_data *data, guint policy)
 	case CONNMAN_POLICY_DHCP:
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combo), 0);
 		for (i = 0; i < 3; i++) {
-			gtk_entry_set_editable(GTK_ENTRY(entry[i]), 0);
+		  //gtk_entry_set_editable(GTK_ENTRY(entry[i]), 0);
 			gtk_widget_set_sensitive(entry[i], 0);
 			gtk_entry_set_text(GTK_ENTRY(entry[i]), _(""));
 		}
@@ -227,7 +227,7 @@ void update_ethernet_ipv4(struct config_data *data, guint policy)
 	case CONNMAN_POLICY_MANUAL:
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combo), 1);
 		for (i = 0; i < 3; i++) {
-			gtk_entry_set_editable(GTK_ENTRY(entry[i]), 1);
+		  //gtk_entry_set_editable(GTK_ENTRY(entry[i]), 1);
 			gtk_widget_set_sensitive(entry[i], 1);
 		}
 		break;

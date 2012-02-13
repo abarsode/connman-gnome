@@ -13,8 +13,6 @@ AC_PREFIX_DEFAULT(/usr/local)
 AC_DEFINE_UNQUOTED(LOCALEDIR, "${prefix}/share/locale",
 				[Directory for the localization files])
 
-COMPILER_FLAGS
-
 AC_LANG_C
 
 AC_PROG_CC
@@ -76,6 +74,12 @@ PKG_CHECK_MODULES(LIBGNOME, gmodule-2.0 gio-unix-2.0 gtk+-3.0)
 
 GDBUS_CODEGEN="gdbus-codegen"
 AC_SUBST(GDBUS_CODEGEN)
+
+GNOME_COMMON_INIT
+GNOME_DEBUG_CHECK
+GNOME_COMPILE_WARNINGS([maximum])
+GNOME_CXX_WARNINGS
+GNOME_MAINTAINER_MODE_DEFINES
 
 AC_OUTPUT(Makefile common/Makefile applet/Makefile properties/Makefile
 				lib/Makefile icons/Makefile po/Makefile.in)

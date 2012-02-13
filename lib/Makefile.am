@@ -9,7 +9,6 @@ libgnome_connman_c_sources =		\
 	connman-client.c		\
 	connman-client-glue.c
 
-
 libgnome_connman_private_headers =	\
 	connman-client-glue.h
 
@@ -21,11 +20,8 @@ libgnome_connman_la_SOURCES =			\
 libgnome_connman_la_LIBADD = $(LIBGNOME_LIBS)
 
 libgnome_connman_la_LDFLAGS =				\
-	-version-info $(GNOMEBT_LT_VERSION)		\
 	-no-undefined					\
-	$(AM_LDFLAGS)					\
-	-export-symbols $(srcdir)/gnome-connman.symbols
-
+	$(AM_LDFLAGS)
 
 AM_CFLAGS =						\
 	-I$(srcdir)					\
